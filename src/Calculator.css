@@ -63,10 +63,19 @@ body {
 }
 
 .history_button {
-  width: 85px;
-  height: 85px;
-}
-
-.history {
+  width: 200px;
+  height: 35px;
+  font-size: 15px;
+  margin-bottom : 13px;
+  background-color: #ffffff;
   
 }
+
+.history_button:hover {
+  background-color: #d8d8d8;
+}
+
+.equal {
+  font-size: 20px;
+}
+

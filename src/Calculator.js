@@ -73,8 +73,11 @@ function Calculator() {
           
         </div>
 
+        
+
         <div className="history">
           <h3>HISTORY</h3>
+
           {historyList.map(info => <History sic={info.sic} result={info.result} />)}
         </div>
         
@@ -88,16 +91,15 @@ function Calculator() {
       //히스토리를 클릭 시 current 값을 클릭된 히스토리 값으로 변경 
       return (
         <div className="history">
-          <button id="history_button"onClick={()=>setOutputs({...outputs, current:sic} )} >{sic}</button> 
-          <span id="equal"> = </span>
-          <button id ="history_button" onClick={()=>setOutputs({...outputs, current:result} )}>{result}</button>
+          <button className="history_button" onClick={()=>setOutputs({...outputs, current:sic} )} >{sic}</button> 
+          <span className="equal"> = </span>
+          <button className ="history_button" onClick={()=>setOutputs({...outputs, current:result} )}>{result}</button>
         </div>
         
       )
   }
 
   }
-
 
 
   export default Calculator;
