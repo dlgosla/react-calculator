@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import "./Calculator.css";
 //import History  from './History';
 
+//계산기 컴포넌트
 function Calculator() { 
 
   const [outputs, setOutputs] = useState({
@@ -11,17 +12,19 @@ function Calculator() {
   });
 
 
-
+  //hook을 이용해 history를 관리할 state 선언
   const [historyList, setHistoryList] = useState([]);
-
+  //hook을 이용해 현재 값과 이전 값을 관리할 state 선언
   const { current, previous} = outputs; 
 
+  // = 을 클릭했을 때 호출되는 함수
   const evaluation = () => {
-    console.log(current)
-    //setHistoryList(historyList => [...historyList, current])
+
+    //history 리스트에 현재 입력된 식과 답 추가
     setHistoryList(historyList => [...historyList, {sic: outputs.current, result: String(eval(outputs.current)) }])
     console.log(historyList)
 
+    // 현재 값과 이전 값을 업데이트
     setOutputs({
       ...outputs,
       previous: current,
@@ -79,8 +82,10 @@ function Calculator() {
 
     );
 
-
+    //history 컴포넌트
     function History({sic, result}){
+
+      //히스토리를 클릭 시 current 값을 클릭된 히스토리 값으로 변경 
       return (
         <div className="row">
         <button onClick={()=>setOutputs({...outputs, current:sic} )} >{sic}</button> 
