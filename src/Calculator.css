@@ -19,22 +19,29 @@ body {
 
 }
 
-
-
 #previous_value{
   font-size: 15px;
   text-align: right;
+  color: #747474;
   margin-bottom : 4px;
   margin-top : 4px;
   margin-right: 10px;
 }
 
 #current_value{
+  width: 355px;
+  border: none;
   font-size: 30px;
+  font-weight: 650;
   text-align: right;
   margin-right: 10px;
 }
 
+input:focus,
+input:active{
+	outline:none;
+	/*border-radius:4px 가능 */
+}
 
 
 .calc_button {
@@ -56,19 +63,20 @@ body {
     height: 85px;
     border: 0;
     outline: 0;
-    background-color: #4d4d4d;
+    background-color: #747474;
     font-size: 25pt;
     color: white;
     text-align: center;
 }
 
 .history_button {
-  width: 100px;
-  height: 20px;
-  font-size: 15px;
+  width: 160px;
+  height: 35px;
+  font-size: large;
+  font-weight: bold;
   margin-bottom : 13px;
-  background-color: #4d4d4d;
-  color: white;
+  background-color: #ff8c8c;
+  color: rgb(255, 255, 255);
   
 }
 
@@ -82,6 +90,26 @@ body {
 
 .modal_button{
   margin-top: 20px;
-  width: 85px;
-  height: 30px;
+  width: 360px;
+  height: 60px;
+  font-size: 23px;
+  font-weight: 700;
+  color: rgb(82, 21, 19);
+  background-color: rgba(255, 255, 255, 0.533);
+  border: 0;
 }
+
+.modal_button:hover {
+  background-color: #e7e6e6;
+}
+
+.history{
+  width: fit-content;
+}
+
+.frame{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+

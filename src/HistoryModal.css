@@ -26,8 +26,9 @@
 .modal > section > header {
     position: relative;
     padding: 16px 64px 16px 16px;
-    background-color: #f1f1f1;
+    background-color: #ffe7e7;
     font-weight: 700;
+    
 }
 .modal > section > header button {
     position: absolute;
@@ -52,7 +53,7 @@
 .modal > section > footer button {
     padding: 6px 12px;
     color: #fff;
-    background-color: #6c757d;
+    background-color: #d37272;
     border-radius: 5px;
     font-size: 13px;
 }
@@ -80,3 +81,4 @@
         opacity: 1;
     }
 }
+

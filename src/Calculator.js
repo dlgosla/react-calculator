@@ -46,18 +46,29 @@ function Calculator() {
       current: String(eval(current)) ,
       
     });
-
   };
-  
-      return (
-        
+
+  //키보드로 입력할 때 호출
+  const onChange = (e) => {
+    console.log(e.type + ": "+ e.target.value);
+    setOutputs({...outputs, current:e.target.value} )
+  }
+
+  //엔터를 눌렀을 때 호출
+  const onKeyPress = (e) => {
+    if(e.key === 'Enter'){
+      evaluation();
+    }
+  }
+
+    return (
       <div className="row-wrapper">
         <div className="name">
           
         </div>
         <div className="display">
           <div id="previous_value">{previous} =</div>
-          <div id="current_value">{current}</div>
+          <input id="current_value" type="text" onKeyPress={onKeyPress} value={current} onChange={onChange}/>
         </div>
         <div className="row">
           <button className="calc_button" onClick={()=>setOutputs({...outputs, current:current+"9"} )}>9</button>
@@ -70,39 +81,33 @@ function Calculator() {
           <button className="calc_button" onClick={()=>setOutputs({...outputs, current:current+"6"} )}>6</button>
           <button className="calc_button" onClick={()=>setOutputs({...outputs, current:current+"5"} )}>5</button>
           <button className="calc_button" onClick={()=>setOutputs({...outputs, current:current+"4"} )}>4</button>
-          <button className="calc_button" onClick={()=>setOutputs({...outputs, current:current+" + "} )}>+</button>
+          <button className="calc_button" onClick={()=>setOutputs({...outputs, current:current+"+"} )}>+</button>
         </div>
 
         <div className="row">
           <button className="calc_button" onClick={()=>setOutputs({...outputs, current:current+"3"} )}>3</button>
           <button className="calc_button" onClick={()=>setOutputs({...outputs, current:current+"2"} )}>2</button>
           <button className="calc_button" onClick={()=>setOutputs({...outputs, current:current+"1"} )}>1</button>
-          <button className="calc_button" onClick={()=>setOutputs({...outputs, current:current+" - "} )}>-</button>
+          <button className="calc_button" onClick={()=>setOutputs({...outputs, current:current+"-"} )}>-</button>
         </div>
 
         <div className="row">
           <button className="calc_button" onClick={()=>setOutputs({...outputs, current:current+"0"} )}>0</button>
-          <button className="calc_button" onClick={()=>setOutputs({...outputs, current:current+" / "} )}>/</button>
-          <button className="calc_button" onClick={()=>setOutputs({...outputs, current:current+" * "} )}>*</button>
+          <button className="calc_button" onClick={()=>setOutputs({...outputs, current:current+"/"} )}>/</button>
+          <button className="calc_button" onClick={()=>setOutputs({...outputs, current:current+"*"} )}>*</button>
           <button className="calc_button" onClick={evaluation}> =</button>
           
         </div>
 
         
-
         <div className="history">
           <React.Fragment>
             <button className="modal_button" onClick={ openModal }>HISTORY</button>
-            <HistoryModal open={ modalOpen } close={ closeModal } header="MY HISTORY">
-              
-              {historyList.map(info => <History sic={info.sic} result={info.result} />)}
-            
-            </HistoryModal>
+              <HistoryModal open={ modalOpen } close={ closeModal } header="MY HISTORY">
+                {historyList.map(info => <History sic={info.sic} result={info.result} />)}
+              </HistoryModal>
           </React.Fragment>
-
-          
         </div>
-        
       </div>
 
     );
@@ -112,11 +117,14 @@ function Calculator() {
 
       //히스토리를 클릭 시 current 값을 클릭된 히스토리 값으로 변경 
       return (
-        <div className="history">
-          <button className="history_button" onClick={()=>setOutputs({...outputs, current:sic} )} >{sic}</button> 
-          <span className="equal"> = </span>
-          <button className ="history_button" onClick={()=>setOutputs({...outputs, current:result} )}>{result}</button>
+        <div className ="frame">
+          <div className="history">
+            <button className="history_button" onClick={()=>setOutputs({...outputs, current:sic} )} >{sic}</button> 
+            <span className="equal"> = </span>
+            <button className ="history_button" onClick={()=>setOutputs({...outputs, current:result} )}>{result}</button>
+          </div>
         </div>
+
         
       )
   }
