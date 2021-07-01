@@ -63,11 +63,12 @@ body {
 }
 
 .history_button {
-  width: 200px;
-  height: 35px;
+  width: 100px;
+  height: 20px;
   font-size: 15px;
   margin-bottom : 13px;
-  background-color: #ffffff;
+  background-color: #4d4d4d;
+  color: white;
   
 }
 
@@ -79,3 +80,8 @@ body {
   font-size: 20px;
 }
 
+.modal_button{
+  margin-top: 20px;
+  width: 85px;
+  height: 30px;
+}

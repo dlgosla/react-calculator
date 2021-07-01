@@ -1,6 +1,10 @@
 
 import React, { useState } from 'react';
 import "./Calculator.css";
+
+import HistoryModal from './HistoryModal';
+import "./HistoryModal.css"
+
 //import History  from './History';
 
 //계산기 컴포넌트
@@ -11,11 +15,22 @@ function Calculator() {
     previous: 'ans',
   });
 
+  //모달 open 상태 관리
+  const [ modalOpen, setModalOpen ] = useState(false);
 
   //hook을 이용해 history를 관리할 state 선언
   const [historyList, setHistoryList] = useState([]);
+
   //hook을 이용해 현재 값과 이전 값을 관리할 state 선언
   const { current, previous} = outputs; 
+
+  const openModal = () => {
+      setModalOpen(true);
+  }
+
+  const closeModal = () => {
+      setModalOpen(false);
+  }
 
   // = 을 클릭했을 때 호출되는 함수
   const evaluation = () => {
@@ -76,9 +91,16 @@ function Calculator() {
         
 
         <div className="history">
-          <h3>HISTORY</h3>
+          <React.Fragment>
+            <button className="modal_button" onClick={ openModal }>HISTORY</button>
+            <HistoryModal open={ modalOpen } close={ closeModal } header="MY HISTORY">
+              
+              {historyList.map(info => <History sic={info.sic} result={info.result} />)}
+            
+            </HistoryModal>
+          </React.Fragment>
 
-          {historyList.map(info => <History sic={info.sic} result={info.result} />)}
+          
         </div>
         
       </div>
