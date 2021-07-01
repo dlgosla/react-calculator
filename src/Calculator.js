@@ -15,8 +15,7 @@ function Calculator() {
     previous: 'ans',
   });
 
-  //모달 open 상태 관리
-  const [ modalOpen, setModalOpen ] = useState(false);
+  
 
   //hook을 이용해 history를 관리할 state 선언
   const [historyList, setHistoryList] = useState([]);
@@ -24,6 +23,10 @@ function Calculator() {
   //hook을 이용해 현재 값과 이전 값을 관리할 state 선언
   const { current, previous} = outputs; 
 
+  //모달 open 상태 관리
+  const [ modalOpen, setModalOpen ] = useState(false);
+
+  //모달 open 상태 관리 함수
   const openModal = () => {
       setModalOpen(true);
   }
@@ -32,12 +35,20 @@ function Calculator() {
       setModalOpen(false);
   }
 
-  // = 을 클릭했을 때 호출되는 함수
+  // = 버튼이나 enter를 눌렀을 때 호출
   const evaluation = () => {
+    //eval_result = eval(current);
+
+    if (String(eval(current)) === "undefined") {
+      setOutputs({...outputs, current:"", previous:""} );
+      return;
+    }
+
+    
 
     //history 리스트에 현재 입력된 식과 답 추가
-    setHistoryList(historyList => [...historyList, {sic: outputs.current, result: String(eval(outputs.current)) }])
-    console.log(historyList)
+    setHistoryList(historyList => [...historyList, {sic: outputs.current, result: String(eval(outputs.current)) }]);
+    console.log(historyList);
 
     // 현재 값과 이전 값을 업데이트
     setOutputs({
@@ -68,7 +79,7 @@ function Calculator() {
         </div>
         <div className="display">
           <div id="previous_value">{previous} =</div>
-          <input id="current_value" type="text" onKeyPress={onKeyPress} value={current} onChange={onChange}/>
+          <input id="current_value" type="text" onKeyPress={onKeyPress} value={current} onChange={onChange} autoFocus/>
         </div>
         <div className="row">
           <button className="calc_button" onClick={()=>setOutputs({...outputs, current:current+"9"} )}>9</button>
@@ -124,8 +135,6 @@ function Calculator() {
             <button className ="history_button" onClick={()=>setOutputs({...outputs, current:result} )}>{result}</button>
           </div>
         </div>
-
-        
       )
   }
 
